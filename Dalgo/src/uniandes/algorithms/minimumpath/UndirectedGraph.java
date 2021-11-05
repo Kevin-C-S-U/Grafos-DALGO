@@ -49,10 +49,11 @@ public class UndirectedGraph {
 		}
 	}
 	public void getWeight(int idFirst,int idSecond) {
-		int pos = -1;
+		int pos = 0;
+		boolean found = false;
 		for(ArrayList<Integer> path : this.edges) {
 			if(path.get(0)==idFirst && path.get(1)==idSecond){
-				
+				pos ++;
 			}
 		}
 	}
