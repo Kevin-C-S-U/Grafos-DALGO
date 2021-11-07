@@ -13,6 +13,7 @@ public class DirectedGraph {
 
 	private List<Integer> weights;
 
+	//Para grafos no dirigidos se representa como una matriz simétrica
 	public DirectedGraph(int size) {
 
 		this.vertex = new ArrayList<Integer>();
