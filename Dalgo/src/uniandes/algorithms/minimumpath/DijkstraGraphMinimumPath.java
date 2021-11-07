@@ -2,9 +2,10 @@ package uniandes.algorithms.minimumpath;
 
 import java.util.Arrays;
 
-public class DijkstraAlgorithm {
+public class DijkstraGraphMinimumPath implements GraphMinimumPath{
 	
-	public int[][] DijkstraCompleto(int[][] grafo){
+	public int[][] minimumpath(DirectedGraph graph){
+		int[][] grafo = graph.getEdges();
 		int[][] minCost = new int[grafo.length][grafo[0].length];
 		for (int i = 0;i<grafo.length;i++) {
 			minCost[i] = Dijkstra(grafo,i);
