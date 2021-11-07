@@ -8,6 +8,8 @@ public class DirectedGraph {
 	private List<Integer> vertex;
 
 	private int[][] edges;
+	
+	private ArrayList<ArrayList<Integer>> definededges;
 
 	private List<Integer> weights;
 
@@ -16,6 +18,8 @@ public class DirectedGraph {
 		this.vertex = new ArrayList<Integer>();
 
 		this.edges = new int[size][size];
+		
+		this.definededges = new ArrayList<ArrayList<Integer>>();
 	}
 
 	/**
@@ -32,6 +36,23 @@ public class DirectedGraph {
 			this.vertex.add(idSecond);
 		}
 		this.edges[idFirst][idSecond] = weight;
+		if(weight!=-1) {
+			ArrayList<Integer> path = new ArrayList<Integer>();
+			path.add(idFirst);
+			path.add(idSecond);
+			ArrayList<ArrayList<Integer>> edges = getDefinededges();
+			edges.add(path);			
+			setDefinededges(edges);
+			
+		}
+	}
+
+	public ArrayList<ArrayList<Integer>> getDefinededges() {
+		return definededges;
+	}
+
+	public void setDefinededges(ArrayList<ArrayList<Integer>> definededges) {
+		this.definededges = definededges;
 	}
 
 	public List<Integer> getVertex() {
@@ -58,7 +79,9 @@ public class DirectedGraph {
 		this.weights = weights;
 	}
 
-	
+	public int getWeight(int idFirst,int idSecond) {
+		return getEdges()[idFirst][idSecond];
+	}
 
 	
 }

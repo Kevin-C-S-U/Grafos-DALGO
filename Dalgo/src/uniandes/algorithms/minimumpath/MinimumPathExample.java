@@ -4,7 +4,10 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
+import java.util.Scanner;
+
 
 public class MinimumPathExample {
 
@@ -33,13 +36,31 @@ public class MinimumPathExample {
 				}
 				line = in.readLine();
 			}
-			String a="";
-			for(int i=0;i<graph.getEdges().length;i++) {
-				for (int j = 0; j<graph.getEdges()[0].length;j++) {
-					a = a+"  " + graph.getEdges()[i][j];
+			long startTime;
+			long endTime;
+			if(algorithm==null) {
+				System.out.println("Ingrese por parametro un algoritmo");
+			}else {
+				String classname = GraphMinimumPath.class.getPackage().getName()+"."+algorithm+"GraphMinimumPath";
+				GraphMinimumPath minimumAlgorithm;
+				try {
+					Class<?> algorithmClass = Class.forName(classname);
+					Constructor<?> emptyConstructor = algorithmClass.getConstructor();
+					minimumAlgorithm = (GraphMinimumPath)emptyConstructor.newInstance();
+				} catch (Exception e) {
+					throw new Exception("Invalid algorithm "+algorithm,e);
 				}
-				System.out.println(a);
-				a="";
+				Scanner sc= new Scanner(System.in); 
+				System.out.print("Enter first vertex- ");  
+				int a= sc.nextInt();  
+				System.out.print("Enter second vertex- ");  
+				int b= sc.nextInt();  
+				startTime = System.currentTimeMillis();
+				ArrayList<Integer> minimumpath = minimumAlgorithm.minimumpath(graph, a);
+				endTime = System.currentTimeMillis();
+				for (int i:minimumpath) {
+					System.out.println(i);
+				}
 			}
 		}
 	}
