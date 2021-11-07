@@ -50,17 +50,20 @@ public class MinimumPathExample {
 				} catch (Exception e) {
 					throw new Exception("Invalid algorithm "+algorithm,e);
 				}
-				Scanner sc= new Scanner(System.in); 
-				System.out.print("Enter first vertex- ");  
-				int a= sc.nextInt();  
-				System.out.print("Enter second vertex- ");  
-				int b= sc.nextInt();  
+				Scanner sc= new Scanner(System.in);    
 				startTime = System.currentTimeMillis();
-				ArrayList<Integer> minimumpath = minimumAlgorithm.minimumpath(graph, a);
+				int[][] minimumpath = minimumAlgorithm.minimumpath(graph);
 				endTime = System.currentTimeMillis();
-				for (int i:minimumpath) {
-					System.out.println(i);
+				String b = "";
+				System.out.println("Matriz de costos minimos, el número de las columnas y filas representa el vertice");
+				for (int[] i:minimumpath) {
+					for(int j:i) {
+						b = b+"  "+j;
+					}
+					System.out.println(b);
+					b="";
 				}
+				System.out.println("Matriz of minimum paths. Total time(milliseconds): "+(endTime-startTime));
 			}
 		}
 	}
