@@ -17,7 +17,7 @@ public class DijkstraGraphMinimumPath implements GraphMinimumPath{
 		//Iniciamos el arreglo de respuesta y lo llenamos de los arcos directos
 		int[] minCost = new int[grafo.length];
 		minCost = grafo[vertice];
-		boolean[] marcados = new boolean[grafo.length];
+		Boolean[] marcados = new Boolean[grafo.length];
 		
 		//Iniciamos la lista de marcados con false y true en el vertice
 		for(int m = 0;m < grafo.length;m++) {
@@ -38,7 +38,9 @@ public class DijkstraGraphMinimumPath implements GraphMinimumPath{
 			}
 			marcados[ver] = true;
 			for (int j = 0;j<grafo.length;j++) {
-				if (minCost[j]>minCost[ver]+grafo[ver][j]) {
+				if (minCost[j] == -1 && grafo[ver][j] != -1) {
+					minCost[j] = minCost[ver]+grafo[ver][j];
+				}else if (minCost[j]>minCost[ver]+grafo[ver][j] && grafo[ver][j] != -1) {
 					minCost[j] = minCost[ver]+grafo[ver][j];
 				}
 			}
